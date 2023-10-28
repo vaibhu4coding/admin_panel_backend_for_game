@@ -43,6 +43,19 @@ const getPlayers = async (req, res) => {
         res.status(500).json({ error: 'An error occurred.' });
       }
 }
+const deletePlayer = async (req, res) => {
+  try {
+    const playerId = req.params.id
+    const player = await Player.findById(playerId)
+    if (!player) {
+      res.status(400).json({message: "Player not found"})
+    }
+    await Player.findByIdAndDelete(playerId)
+    res.status(200).json({message:"Player deleted successfully"})
+  } catch (error) {
+    res.status(500).json({message:"An error occured",error:error.message})
+  }
+}
 module.exports = {
-    createPlayer,getPlayers
+    createPlayer,getPlayers,deletePlayer
 }
