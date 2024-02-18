@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const playerController = require('../controllers/playerController')
 const authMiddleware = require('../utils/auth')
 const router = express.Router()
